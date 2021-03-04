@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "map_food_image", schema = "public", catalog = "spring_web_site")
+@Table(name = "map_food_image", schema = "public")
 public class MapFoodImage
 {
 
@@ -57,6 +57,16 @@ public class MapFoodImage
 		{
 			return Objects.hash(image, food);
 		}
+	}
+
+	public Key getKey()
+	{
+		return key;
+	}
+
+	public void setKey(Key key)
+	{
+		this.key = key;
 	}
 
 	public MapFoodImage()

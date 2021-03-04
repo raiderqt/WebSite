@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 
 @Entity
-
+@Table(name = "image", schema = "public")
 public class Image {
 
     @Id

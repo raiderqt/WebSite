@@ -16,7 +16,4 @@ public class MainController {
         model.addAttribute("title");
         return "redirect:/food";
     }
-
-
-
 }

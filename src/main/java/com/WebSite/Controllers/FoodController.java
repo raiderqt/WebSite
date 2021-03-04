@@ -109,7 +109,7 @@ public class FoodController {
 
 
 	@GetMapping("/food/{id}")
-	public String foodDetails(@PathVariable(value = "id") long id, Model model) {
+	public String foodDetails(@PathVariable(value = "id") int id, Model model) {
 		if (!foodRepository.existsById(id)) {
 			return "redirect:/food";
 		}
@@ -131,7 +131,7 @@ public class FoodController {
 	}
 
 	@GetMapping("/food/{id}/edit")
-	public String foodEdit(@PathVariable(value = "id") long id, Model model) {
+	public String foodEdit(@PathVariable(value = "id") int id, Model model) {
 		if (!foodRepository.existsById(id)) {
 			return "redirect:/food";
 		}
@@ -143,7 +143,7 @@ public class FoodController {
 	}
 
 	@PostMapping("/food/{id}/edit")
-	public String foodPostUpdate(@PathVariable(value = "id") long id, @RequestParam String anons,String title, Model model) {
+	public String foodPostUpdate(@PathVariable(value = "id") int id, @RequestParam String anons,String title, Model model) {
 		Food food = foodRepository.findById(id).orElseThrow(IllegalStateException::new);
 		food.setAnons(anons);
 		food.setAnons(title);
@@ -151,7 +151,7 @@ public class FoodController {
 		return "redirect:/admin";
 	}
 	@PostMapping("/food/{id}/remove")
-	public String foodPostDelete(@PathVariable(value = "id") long id, Model model) {
+	public String foodPostDelete(@PathVariable(value = "id") int id, Model model) {
 		Food food = foodRepository.findById(id).orElseThrow(IllegalStateException::new);
 		/*foodRepository.delete(food);*/
 		foodRepository.deleteAll();

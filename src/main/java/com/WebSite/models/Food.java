@@ -5,35 +5,20 @@ package com.WebSite.models;
 import javax.persistence.*;
 
 @Entity
-
+@Table(name = "food", schema = "public")
 public class Food {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    /*@GenericGenerator(name = "uuid", strategy = "uuid2")*/
-    private Long id;
+    private Integer id;
 
     private String title, anons, fulltext;
 
-
-    /*@OneToMany(mappedBy = "food")
-    private List<Food> foodList;*/
-
-
-  /*  public List<Food> getFoodList() {
-        return foodList;
-    }
-
-    public void setFoodList(List<Food> foodList) {
-        this.foodList = foodList;
-    }*/
-
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -69,8 +54,6 @@ public class Food {
         this.anons = anons;
         this.fulltext = fulltext;
     }
-
-
 
     public Food(String anons, String title) {
 
