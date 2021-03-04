@@ -1,10 +1,8 @@
-package com.erzhanium.WebSite.models;
+package com.WebSite.models;
 
 
 
 import javax.persistence.*;
-
-import java.util.List;
 
 @Entity
 
@@ -30,10 +28,6 @@ public class Food {
     public void setFoodList(List<Food> foodList) {
         this.foodList = foodList;
     }*/
-
-
-    @OneToOne(mappedBy = "food")
-    private MapFoodImage mapFoodImage;
 
     public Long getId() {
         return id;

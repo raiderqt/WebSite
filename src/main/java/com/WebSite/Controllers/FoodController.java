@@ -1,14 +1,12 @@
-package com.erzhanium.WebSite.Controllers;
+package com.WebSite.Controllers;
 
 
-import com.erzhanium.WebSite.models.Food;
-import com.erzhanium.WebSite.models.Image;
-import com.erzhanium.WebSite.models.MapFoodImage;
-import com.erzhanium.WebSite.repo.FoodRepository;
-import com.erzhanium.WebSite.repo.ImageRepository;
-import com.erzhanium.WebSite.repo.MapFoodImageRepository;
+import com.WebSite.models.Food;
+import com.WebSite.models.Image;
+import com.WebSite.repo.FoodRepository;
+import com.WebSite.repo.ImageRepository;
+import com.WebSite.repo.MapFoodImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,21 +24,11 @@ public class FoodController {
 	@Autowired
 	private ImageRepository imageRepository;
 
-
-
 	@Autowired
 	private FoodRepository foodRepository;
 
-
 	@Autowired
 	private MapFoodImageRepository mapFoodImageRepository;
-
-
-
-
-
-
-
 
 	@RequestMapping("/food")
 	public String foodImages( Model model){
@@ -49,8 +37,13 @@ public class FoodController {
 
 	@GetMapping("/food")
 	public String foodMain( Model model) {
-		Iterable<Food> foods = foodRepository.findAll();
-		model.addAttribute("foods", foods);
+		Iterable<Food> goods = foodRepository.findAll();
+		if(goods.iterator().hasNext())
+		{
+			model.addAttribute("foods", goods);
+			model.addAttribute("images","data:image/jpg;base64," + new String(Base64.getEncoder().encode(imageRepository.findAll().iterator().next().getImageDB())));
+		}
+
 
 		/*String	base64String = "";
 		for(Image imageModel : imageRepository.findAll()){
@@ -68,7 +61,7 @@ public class FoodController {
 
 
 
-		model.addAttribute("images","data:image/jpg;base64," + new String(Base64.getEncoder().encode(imageRepository.findAll().iterator().next().getImageDB())));
+
 		/*model.addAttribute("images","data:image/jpg;base64," + new String(Base64.getEncoder().encode()));*/
 		return "food-main";
 	}

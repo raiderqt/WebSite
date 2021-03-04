@@ -1,56 +1,46 @@
-package com.erzhanium.WebSite.Controllers;
+package com.WebSite.Controllers;
 
-import com.erzhanium.WebSite.models.Image;
-
-import com.erzhanium.WebSite.repo.ImageRepository;
+import com.WebSite.models.Image;
+import com.WebSite.repo.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-
-import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
-
-import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Base64;
-import java.util.List;
-
 
 @Controller
-public class FileUploadController {
+public class FileUploadController
+{
 	public static String uploadDirectory = System.getProperty("user.dir") + "/uploads";
 
 	@Autowired
 	private ImageRepository imageRepository;
 
-
 	@RequestMapping("/image")
 	public String UploadPage(Model model)
 	{
-
 		return "uploadForm";
 	}
 
-
 	@RequestMapping("/upload")
-	public String upload(Model model, @RequestParam("files") MultipartFile[] files, byte[] imageDB ) {
+	public String upload(Model model, @RequestParam("files") MultipartFile[] files, byte[] imageDB)
+	{
 
 		Path onlyPath;
-		byte[] fileBytes ;
+		byte[] fileBytes;
 		String base64String = "";
 		Path fileNameAndPath = Paths.get(uploadDirectory, files[0].getOriginalFilename());
-		if(!(files ==null)) {
-			try {
+		if (!(files == null))
+		{
+			try
+			{
 				onlyPath = Files.write(fileNameAndPath, files[0].getBytes());
 				fileBytes = Files.readAllBytes(onlyPath);
 				imageDB = fileBytes;
@@ -59,7 +49,9 @@ public class FileUploadController {
 
 				base64String = new String(Base64.getEncoder().encode(fileBytes));
 
-			} catch (IOException e) {
+			}
+			catch (IOException e)
+			{
 				e.printStackTrace();
 			}
 		}

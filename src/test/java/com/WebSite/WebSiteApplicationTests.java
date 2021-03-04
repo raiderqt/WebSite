@@ -1,4 +1,4 @@
-package com.erzhanium.WebSite;
+package com.WebSite;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

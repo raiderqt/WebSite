@@ -1,4 +1,4 @@
-package com.erzhanium.WebSite.config;
+package com.WebSite.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
