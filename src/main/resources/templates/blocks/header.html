@@ -1,0 +1,18 @@
+<!--шапка-->
+<div th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <h5 class="my-0 mr-md-auto font-weight-normal">Название</h5>
+        <nav class="my-2 my-md-0 mr-md-3">
+            <label for="side-checkbox">
+                <a class="text-dark" >Корзина</a>
+            </label>
+        </nav>
+    </div>
+
+    <input type="checkbox" id="side-checkbox" />
+    <div class="side-panel">
+        <label class="side-button-2" for="side-checkbox">+</label>
+        <div class="side-title">Корзина</div>
+        <p>Информация в панеле</p>
+    </div>
+</div>
