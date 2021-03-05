@@ -71,12 +71,16 @@
 <div class="container mt-5 mb-5">
     <h1>Добавление товара</h1>
     <form action="#" th:action="@{/food/add}" method="post" enctype="multipart/form-data" >
-
-        <input type="file" name="files" >
-        <textarea name="anons" placeholder="Состав еды" class="form-control"></textarea><br>
-        <input type="text" name="title" placeholder="цена" class="form-control"><br>
+        <p><input name="name" type="text" placeholder="Наименование" class="form-control"></p>
+        <p><textarea name="description" placeholder="Состав еды" class="form-control"></textarea></p>
+        <p><label>
+            <input name="price" type="number" placeholder="цена" class="form-control">
+        </label></p>
+        <p><input name="files" type="file"> </p>
         <button type="submit" class="btn btn-success">Добавить товар</button>
     </form>
+    <br>
+    <p><label style="color:${resultColor}" th:text="${result}"></label></p>
 </div>
 <div th:insert="blocks/footer :: footer"></div>
 </body>

@@ -13,7 +13,7 @@
     <div th:each="el : ${food}">
         <form  method="post" th:action="'/food/' + ${el.id} + '/edit'">
             <!--<input type="text" th:value="${el.anons}" name="anons" placeholder="Введите анонс" class="form-control"><br>-->
-           <textarea name="anons" placeholder="Состав еды" class="form-control" th:text="${el.anons}"/><br>
+           <textarea name="anons" placeholder="Состав еды" class="form-control" th:text="${el.name}"/><br>
             <button type="submit" class="btn btn-success">Обновить</button>
         </form>
     </div>

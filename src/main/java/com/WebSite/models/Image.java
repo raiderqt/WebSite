@@ -9,13 +9,9 @@ public class Image {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    /*@GenericGenerator(name = "uuid", strategy = "uuid2")*/
     private Integer id;
 
     private byte[] imageDB;
-
-    /*@OneToMany(mappedBy = "image")
-    private List<Image> imageList;*/
 
     public Image() {}
 

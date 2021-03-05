@@ -1,65 +1,74 @@
 package com.WebSite.models;
 
 
-
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "food", schema = "public")
-public class Food {
+public class Food
+{
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+	@Column(name = "name", nullable = false, unique = true)
+	private String name;
 
-    private String title, anons, fulltext;
+	@Column(name = "description")
+	private String description;
 
-    public Integer getId() {
-        return id;
-    }
+	@Column(name = "price")
+	public BigDecimal price;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public Integer getId()
+	{
+		return id;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public void setId(Integer id)
+	{
+		this.id = id;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public BigDecimal getPrice()
+	{
+		return price;
+	}
 
-    public String getAnons() {
-        return anons;
-    }
+	public void setPrice(BigDecimal price)
+	{
+		this.price = price;
+	}
 
-    public void setAnons(String anons) {
-        this.anons = anons;
-    }
+	public String getName()
+	{
+		return name;
+	}
 
-    public String getFulltext() {
-        return fulltext;
-    }
+	public void setName(String name)
+	{
+		this.name = name;
+	}
 
-    public void setFulltext(String fulltext) {
-        this.fulltext = fulltext;
-    }
+	public String getDescription()
+	{
+		return description;
+	}
 
-    public Food() {
-    }
+	public void setDescription(String fulltext)
+	{
+		this.description = fulltext;
+	}
 
-    public Food( String anons,String title, String fulltext) {
-        this.title = title;
-        this.anons = anons;
-        this.fulltext = fulltext;
-    }
+	public Food()
+	{
+	}
 
-    public Food(String anons, String title) {
-
-        this.anons = anons;
-        this.title = title;
-
-    }
-
+	public Food(String name, BigDecimal price, String description)
+	{
+		this.price = price;
+		this.name = name;
+		this.description = description;
+	}
 }

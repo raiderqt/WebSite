@@ -5,12 +5,15 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "map_food_image", schema = "public")
+@Table(name = "map_food_image", schema = "public", uniqueConstraints = @UniqueConstraint(name = "food_main_unique", columnNames = {"food_id", "main"}))
 public class MapFoodImage
 {
 
 	@EmbeddedId
 	private Key key;
+
+	@Column(name = "main", nullable = false)
+	private boolean main;
 
 	@Embeddable
 	public static class Key implements Serializable
@@ -19,29 +22,9 @@ public class MapFoodImage
 		@JoinColumn(name = "image_id", nullable = false, foreignKey = @ForeignKey(name = "FK_IMAGE_ID"))
 		private Image image;
 
-		public Image getImageId()
-		{
-			return image;
-		}
-
-		public void setImageId(Image image)
-		{
-			this.image = image;
-		}
-
 		@OneToOne(cascade = CascadeType.ALL)
 		@JoinColumn(name = "food_id", nullable = false, foreignKey = @ForeignKey(name = "FK_FOOD_ID"))
 		private Food food;
-
-		public Food getFood()
-		{
-			return food;
-		}
-
-		public void setFood(Food food)
-		{
-			this.food = food;
-		}
 
 		@Override
 		public boolean equals(Object o)
@@ -57,6 +40,38 @@ public class MapFoodImage
 		{
 			return Objects.hash(image, food);
 		}
+
+		public Image getImage()
+		{
+			return image;
+		}
+
+		public void setImage(Image image)
+		{
+			this.image = image;
+		}
+
+		public Food getFood()
+		{
+			return food;
+		}
+
+		public void setFood(Food food)
+		{
+			this.food = food;
+		}
+	}
+
+	public MapFoodImage()
+	{
+	}
+
+	public MapFoodImage(Food food, Image image, boolean main)
+	{
+		this.key = new Key();
+		this.key.food = food;
+		this.key.image = image;
+		this.main = main;
 	}
 
 	public Key getKey()
@@ -69,9 +84,16 @@ public class MapFoodImage
 		this.key = key;
 	}
 
-	public MapFoodImage()
+	public boolean isMain()
 	{
+		return main;
 	}
+
+	public void setMain(boolean main)
+	{
+		this.main = main;
+	}
+
 
 }
 

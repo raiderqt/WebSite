@@ -11,7 +11,7 @@
 
 <div class="container mt-5">
     <div th:each="el : ${food}" class="alert alert-info mt-2">
-        <h3 th:text="${el.title}"/>
+        <h3 th:text="${el.price}"/>
         <p th:text="${el.fulltext}"/>
         <a th:href="'/food/' + ${el.id} + '/edit'" class="btn btn-warning">Редактировать</a>
         <form th:action="'/food/' + ${el.id} + '/remove'" method="post"></form>
