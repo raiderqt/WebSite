@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 @Table(name = "food", schema = "public")
 public class Food
 {
+	//todo: каскад делит связей
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;

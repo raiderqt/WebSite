@@ -2,69 +2,89 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Главная</title>
-     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         #side-checkbox {
-    display: none;
-}
-.side-panel {
+            display: none;
+        }
 
-   position: fixed;
-    z-index: 999999;
-    top: 0px;
-    right: -360px;
-    background: #ffffff;
-    transition: all 0.5s;
-    width: 350px;
+        .side-panel {
 
-    height: 100vh;
+            position: fixed;
+            z-index: 999999;
+            top: 0px;
+            right: -360px;
+            background: #ffffff;
+            transition: all 0.5s;
+            width: 350px;
 
-    box-shadow: 0px 0 20px rgba(0,0,0,0.4);
-    color: #000000;
-    padding: 40px 20px;
-}
-.side-title {
-    font-size: 20px;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #000000;
-    padding-left: 120px;
-}
+            height: 100vh;
 
-/* Переключатели кнопки 1 */
-.side-button-1 .side-close {
-    display: none;
-}
-#side-checkbox:checked + .side-panel + .side-button-1-wr .side-button-1 .side-open {
-    display: none;
-}
-#side-checkbox:checked + .side-panel + .side-button-1-wr .side-button-1 .side-close {
-    display: block;
-}
-#side-checkbox:checked + .side-panel {
-    right: 0;
+            box-shadow: 0px 0 20px rgba(0, 0, 0, 0.4);
+            color: #000000;
+            padding: 40px 20px;
+        }
 
-}
-/* Оформление кнопки на панеле */
-.side-button-2 {
-    font-size: 30px;
-    border-radius: 20px;
-    position: absolute;
-    z-index: 1;
-    top: 8px;
-    right: 8px;
-    cursor: pointer;
-    transform: rotate(45deg);
-    color: #000000;
-    transition: all 280ms ease-in-out;
-}
-.side-button-2:hover {
-    transform: rotate(45deg) scale(1.3);
-    color: #000000;
-}
+        .side-title {
+            font-size: 20px;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #000000;
+            padding-left: 120px;
+        }
+
+        /* Переключатели кнопки 1 */
+        .side-button-1 .side-close {
+            display: none;
+        }
+
+        #side-checkbox:checked + .side-panel + .side-button-1-wr .side-button-1 .side-open {
+            display: none;
+        }
+
+        #side-checkbox:checked + .side-panel + .side-button-1-wr .side-button-1 .side-close {
+            display: block;
+        }
+
+        #side-checkbox:checked + .side-panel {
+            right: 0;
+
+        }
+
+        /* Оформление кнопки на панеле */
+        .side-button-2 {
+            font-size: 30px;
+            border-radius: 20px;
+            position: absolute;
+            z-index: 1;
+            top: 8px;
+            right: 8px;
+            cursor: pointer;
+            transform: rotate(45deg);
+            color: #000000;
+            transition: all 280ms ease-in-out;
+        }
+
+        .side-button-2:hover {
+            transform: rotate(45deg) scale(1.3);
+            color: #000000;
+        }
     </style>
+    <script>
+        function getProductForBasket(id) {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "/basket");
+            xhr.responseType = 'document';
+            xhr.onload = function (event) {
+                //alert("Success, server responded with: " + event.target.response); // raw response
+                addBasket(event.target);
+            };
+            let formData = new FormData(id);
+            xhr.send(formData);
+        }
+    </script>
 </head>
 <body>
 <header th:insert="blocks/header :: header"></header>
@@ -76,8 +96,8 @@
 
             <p class="lead text-muted">Доставка тортов по Соликамску</p>
             <p>
-  <!--              <a href="#" class="btn btn-primary my-2">Main call to action</a>
-                <a href="#" class="btn btn-secondary my-2">Secondary action</a>-->
+                <!--              <a href="#" class="btn btn-primary my-2">Main call to action</a>
+                              <a href="#" class="btn btn-secondary my-2">Secondary action</a>-->
             </p>
         </div>
     </section>
@@ -85,36 +105,31 @@
     <div class="album py-5 bg-light">
         <div class="container">
             <div class="row">
-                <div th:each="element : ${goods}" >
-                        <div style="width: 360px; margin-right: 4px" class="col-md-13 mr-3">
-                            <div  class="card mb-4 shadow-sm">
-                                <!--КАРТИНКИ
-                                <div th:each="ele : ${images}" >-->
-                                <img th:attr="src=@{${element.imageBase64}}" class="card-img-top">
+                <div th:each="element : ${goods}">
+                    <div style="width: 360px; margin-right: 4px" class="col-md-13 mr-3">
+                        <div class="card mb-4 shadow-sm">
+                            <img th:attr="src=@{${element.imageBase64}}" class="card-img-top">
+                        </div>
+                        <div class="card-body">
+                            <p th:text="${element.name}" class="card-text"></p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <!--<form th:action="@{/basket}" method="post" enctype="multipart/form-data" onsubmit="alert('submit!');return true" >-->
+                                    <form action="#" th:action="@{/basket}" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="id" th:value="${element.id}"/>
+                                        <button type="button" class="btn btn-success" onclick="getProductForBasket(this.parentElement)">В корзину</button>
+                                    </form>
                                 </div>
-                                <!--<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>-->
-
-
-                                <div class="card-body">
-                                    <p th:text="${element.name}" class="card-text"></p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-success">В корзину</button>
-                                        </div>
-
-                                        <p th:text="${element.price} + ' ₽' " class="font-weight-bold"></p>
-                                    </div>
-                                </div>
+                                <p th:text="${element.price} + ' ₽' " class="font-weight-bold"></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
 </main>
-
-
-
 
 
 <div th:insert="blocks/footer :: footer"></div>
