@@ -11,7 +11,7 @@
 <div class="container mt-5 mb-5">
     <h1>Редактировать</h1>
     <div th:each="el : ${food}">
-        <form  method="post"> <!--th:action="'/food/' + ${el.id} + '/edit'"-->
+        <form  method="post" th:action="'/food/' + ${el.id} + '/edit'"> <!--th:action="'/food/' + ${el.id} + '/edit'"-->
 
             <p><input name="name"  type="text" placeholder="Наименование"  class="form-control"th:value="${el.name}"></p>
             <p><textarea name="description" placeholder="Состав еды" class="form-control" th:text="${el.description}"></textarea></p>

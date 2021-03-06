@@ -133,7 +133,7 @@ public class FoodController
 	}
 
 	@PostMapping("/food/{id}/edit")
-	public String foodPostUpdate(@PathVariable(value = "id") int id, @RequestParam String name, String description,BigDecimal price, Model model)
+	public String foodPostUpdate(@PathVariable(value = "id") int id, @RequestParam String name,@RequestParam String description,@RequestParam BigDecimal price, Model model)
 	{
 		Food food = foodRepository.findById(id).orElseThrow(IllegalStateException::new);
 		food.setName(name);
