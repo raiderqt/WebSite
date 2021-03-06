@@ -11,9 +11,16 @@
 <div class="container mt-5 mb-5">
     <h1>Редактировать</h1>
     <div th:each="el : ${food}">
-        <form  method="post" th:action="'/food/' + ${el.id} + '/edit'">
-            <!--<input type="text" th:value="${el.anons}" name="anons" placeholder="Введите анонс" class="form-control"><br>-->
-           <textarea name="anons" placeholder="Состав еды" class="form-control" th:text="${el.name}"/><br>
+        <form  method="post"> <!--th:action="'/food/' + ${el.id} + '/edit'"-->
+
+            <p><input name="name"  type="text" placeholder="Наименование"  class="form-control"th:value="${el.name}"></p>
+            <p><textarea name="description" placeholder="Состав еды" class="form-control" th:text="${el.description}"></textarea></p>
+            <p><label>
+                <input name="price"  type="number" placeholder="цена" class="form-control" th:value="${el.price}">
+            </label></p>
+            <p><input name="files" type="file"> </p>
+
+
             <button type="submit" class="btn btn-success">Обновить</button>
         </form>
     </div>
@@ -21,33 +28,3 @@
 <div th:insert="blocks/footer :: footer"></div>
 </body>
 </html>
-
-
-
-
-
-<!--
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Редактирование статьи</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-<header th:insert="blocks/headerAdmin :: headerAdmin"></header>
-
-<div class="container mt-5 mb-5">
-    <h1>Редактирование статьи</h1>
-    <div th:each="el : ${food}">
-        <form method="post">
-&lt;!&ndash;            <input type="text" th:value="${el.title}" name="title" placeholder="Введите название товара" class="form-control"><br>
-            <input type="text" th:value="${el.anons}" name="anons" placeholder="Введите анонс" class="form-control"><br>
-            <textarea name="fulltext" placeholder="Состав еды" class="form-control" th:text="${el.fulltext}"/><br>&ndash;&gt;
-            <button type="submit" class="btn btn-success">Изменить</button>
-        </form>
-    </div>
-</div>
-<div th:insert="blocks/footer :: footer"></div>
-</body>
-</html>-->

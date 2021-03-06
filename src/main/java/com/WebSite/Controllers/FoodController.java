@@ -133,11 +133,13 @@ public class FoodController
 	}
 
 	@PostMapping("/food/{id}/edit")
-	public String foodPostUpdate(@PathVariable(value = "id") int id, @RequestParam String anons, String title, Model model)
+	public String foodPostUpdate(@PathVariable(value = "id") int id, @RequestParam String name, String description,BigDecimal price, Model model)
 	{
 		Food food = foodRepository.findById(id).orElseThrow(IllegalStateException::new);
-		food.setName(anons);
-		food.setName(title);
+		food.setName(name);
+		food.setDescription(description);
+		food.setPrice(price);
+
 		foodRepository.save(food);
 		return "redirect:/admin";
 	}
@@ -159,20 +161,7 @@ public class FoodController
 		return "uploadForm";
 	}
 
-/*
-	@GetMapping("/dbtest")
-	public String dbtest(Model model){
-		return "Test/testDataBase";
-	}
 
-	@PostMapping("/dbtest")
-		public String dbtest (@RequestParam long foodid, Model model){
-
-		MapFoodImage mapFoodImage = new MapFoodImage(foodid);
-		mapFoodImageRepository.save(mapFoodImage);
-		return "Test/testDataBase";
-	}
-*/
 
 
 }
