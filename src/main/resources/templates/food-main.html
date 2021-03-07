@@ -82,35 +82,29 @@
         </div>
     </section>
 
-    <div class="album py-5 bg-light">
-        <div class="container">
-            <div class="row">
-                <div th:each="element : ${goods}" >
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div th:each="element : ${goods}" >
                         <div style="width: 360px; margin-right: 4px" class="col-md-13 mr-3">
                             <div  class="card mb-4 shadow-sm">
-                                <!--КАРТИНКИ
-                                <div th:each="ele : ${images}" >-->
-                                <img th:attr="src=@{${element.imageBase64}}" class="card-img-top">
+                            <img th:attr="src=@{${element.imageBase64}}" class="card-img-top">
+                                  <div class="card-body">
+                                  <p th:text="${element.name}" class="card-text"></p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                           <div class="btn-group">
+                                           <button type="button" class="btn btn-success">В корзину</button>
+                                           </div>
+                                         <p th:text="${element.price} + ' ₽' " class="font-weight-bold"></p>
+                                       </div>
                                 </div>
-                                <!--<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>-->
-
-
-                                <div class="card-body">
-                                    <p th:text="${element.name}" class="card-text"></p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-success">В корзину</button>
-                                        </div>
-
-                                        <p th:text="${element.price} + ' ₽' " class="font-weight-bold"></p>
-                                    </div>
-                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+
 </main>
 
 

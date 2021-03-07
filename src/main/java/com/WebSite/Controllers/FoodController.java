@@ -136,11 +136,14 @@ public class FoodController
 	public String foodPostUpdate(@PathVariable(value = "id") int id, @RequestParam String name,@RequestParam String description,@RequestParam BigDecimal price, Model model)
 	{
 		Food food = foodRepository.findById(id).orElseThrow(IllegalStateException::new);
+		Image image = imageRepository.findById(id).orElseThrow(IllegalStateException::new);
 		food.setName(name);
 		food.setDescription(description);
 		food.setPrice(price);
 
+
 		foodRepository.save(food);
+		imageRepository.save(image);
 		return "redirect:/admin";
 	}
 
