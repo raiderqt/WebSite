@@ -14,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -46,8 +48,8 @@ public class FoodController
 		return productThymeleafList;
 	}
 
-	@RequestMapping("/food")
-	public String foodImages(Model model)
+	@PostMapping("/food")
+	public String foodImages(@RequestParam String test, Model model)
 	{
 		return "food-main";
 	}
@@ -59,10 +61,17 @@ public class FoodController
 		return "food-main";
 	}
 
-	@RequestMapping(value = "/bascet")
-	public void foodAddBasket(Model model)
+	@PostMapping(value = "/basket")
+	public String basket(@RequestParam Integer id, Model model)
 	{
+		Optional<Food> item = foodRepository.findById(id);
+		if(item.isPresent())
+		{
+			model.addAttribute("product_id", item.get().getId());
+			model.addAttribute("product_name", item.get().getName());
+		}
 
+		return "basket";
 	}
 
 	@GetMapping("/food/add")

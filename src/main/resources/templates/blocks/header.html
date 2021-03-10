@@ -4,15 +4,41 @@
         <h5 class="my-0 mr-md-auto font-weight-normal">Название</h5>
         <nav class="my-2 my-md-0 mr-md-3">
             <label for="side-checkbox">
-                <a class="text-dark" >Корзина</a>
+                <a class="text-dark">Корзина</a>
             </label>
         </nav>
     </div>
+    <script>
+        function addBasket(data) {
 
-    <input type="checkbox" id="side-checkbox" />
+            // alert("Success, server responded with: " + data.target.response); // raw response
+            //let tbody = document.getElementById(id).getElementsByTagName("basket_table")[0];
+            let tbody = document.getElementById("basket_table").getElementsByTagName("TBODY")[0];
+            let row = document.createElement("TR");
+            let td1 = document.createElement("TD");
+            td1.appendChild(document.createTextNode(data.response.getElementById("product_id").value));
+            td1.hidden = true;
+            row.appendChild(td1);
+            let td2 = document.createElement("TD");
+            td2.appendChild(document.createTextNode(data.response.getElementById("name").value));
+            row.appendChild(td2);
+            let td3 = document.createElement("TD");
+            td3.appendChild(document.createTextNode("1"));
+            row.appendChild(td3);
+            tbody.appendChild(row);
+        }
+    </script>
+    <input type="checkbox" id="side-checkbox"/>
     <div class="side-panel">
         <label class="side-button-2" for="side-checkbox">+</label>
         <div class="side-title">Корзина</div>
         <p>Информация в панеле</p>
+        <br>
+        <table id="basket_table" border="0">
+            <tbody>
+            border-spacing: 30px 0px;
+            margin-left: -40px;
+            </tbody>
+        </table>
     </div>
 </div>
