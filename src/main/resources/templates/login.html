@@ -22,25 +22,10 @@
 
 <!--<body class="text-center">
         <form  th:action="@{/login}" class="form-signin" method="post">
-
-
-
-
             <h1 class="h3 mb-3 font-weight-normal">Администратор</h1>
-
             <div><label>  <input type="text" name="username" placeholder="Login"/> </label></div>
             <div><label>  <input type="password" name="password" placeholder="Password"/> </label></div>
-
-
-
                 <button type="submit">Войти</button></a><br>
-
-
-
-
-
-
-
         </form>
 
 
@@ -48,27 +33,57 @@
 
 
 <body class="text-center">
-<div class="container mt-20">
+<div class="container">
 
 
-    <form class="form-signin">
+    <!--<form th:action="@{/login}" class="form-signin" method="post" >
 
-            <h1 class="h3 mb-3  font-weight-normal">Please sign in</h1>
-            <label for="login" class="sr-only">Email address</label>
-            <input type="email" id="login" class="form-control" placeholder="Login" required="" autofocus="">
+            <h1 class="h3 mb-3  font-weight-normal">Администратор</h1>
 
-            <label for="inputPassword" class="sr-only">Password</label>
+            &lt;!&ndash;<label for="login" class="sr-only">Email address</label>&ndash;&gt;
+            <input type="text"  name="username" id="login" class="form-control" placeholder="Login" required="" autofocus="">
+
+            &lt;!&ndash;<label for="inputPassword" class="sr-only">Password</label>&ndash;&gt;
             <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-            <div class="checkbox mb-3">
-                <label>
 
-                </label>
-            </div>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 
-        </form>
+        </form>-->
+
+
+
+    <form  th:action="@{/login}" class="form-signin" method="post">
+        <h1 class="h3 mb-3 font-weight-normal">Администратор</h1>
+        <!--<div><label>  <input type="text" name="username" placeholder="Login"/> </label></div>-->
+       <div><label><input type="text"  name="username" class="form-control" placeholder="Login" required="" autofocus=""></label></div>
+        <div><label><input type="password" name="password" placeholder="Password" class="form-control"/> </label></div>
+        <label>
+
+        </label>
+
+        <div><label> <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button></a><br></label></div>
+    </form>
 
 </div>
+
+
+
+
+
+<!--
+<form  th:action="@{/login}" class="form-signin" method="post">
+    <h1 class="h3 mb-3 font-weight-normal">Администратор</h1>
+    <div><label>  <input type="text" name="username" placeholder="Login"/> </label></div>
+    <div><label>  <input type="password" name="password" placeholder="Password"/> </label></div>
+    <button type="submit">Войти</button></a><br>
+</form>
+-->
+
+
+
+
+
 </body>
 
 </html>
+
