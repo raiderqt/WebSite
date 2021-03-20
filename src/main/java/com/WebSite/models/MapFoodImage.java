@@ -12,6 +12,7 @@ public class MapFoodImage
 	@EmbeddedId
 	private Key key;
 
+
 	@Column(name = "main", nullable = false)
 	private boolean main;
 

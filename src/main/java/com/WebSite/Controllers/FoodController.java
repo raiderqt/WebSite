@@ -61,6 +61,12 @@ public class FoodController
 		return "food-main";
 	}
 
+	@GetMapping("/basket")
+	public String basket(Model model)
+	{
+
+		return "basket";
+	}
 	@PostMapping(value = "/basket")
 	public String basket(@RequestParam Integer id, Model model)
 	{
@@ -104,6 +110,7 @@ public class FoodController
 		//model.addAttribute("imagePath", "data:image/jpg;base64," + base64String);
 		return "foodAdd";
 	}
+
 
 
 	@GetMapping("/food/{id}")
@@ -157,12 +164,14 @@ public class FoodController
 	}
 
 	@PostMapping("/food/{id}/remove")
-	public String foodPostDelete(@PathVariable(value = "id") int id, Model model)
+	public String foodPostDelete(@PathVariable(value = "id") MapFoodImage.Key key, Model model)
 	{
-		Food food = foodRepository.findById(id).orElseThrow(IllegalStateException::new);
-		/*foodRepository.delete(food);*/
-		foodRepository.deleteAll();
-		imageRepository.deleteAll();
+		/*Food food = foodRepository.findById(id).orElseThrow(IllegalStateException::new);
+		foodRepository.delete(food);*/
+		/*foodRepository.deleteAll();
+		imageRepository.deleteAll();*/
+		/*MapFoodImage mapFoodImage = mapFoodImageRepository.findById(key).orElseThrow(IllegalStateException::new);
+		mapFoodImageRepository.delete(mapFoodImage);*/
 		return "redirect:/admin";
 	}
 
