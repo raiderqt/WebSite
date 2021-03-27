@@ -164,10 +164,17 @@ public class FoodController
 	}
 
 	@PostMapping("/food/{id}/remove")
-	public String foodPostDelete(@PathVariable(value = "id") MapFoodImage.Key key, Model model)
+	public String foodPostDelete(@PathVariable(value = "id") int id, MapFoodImage.Key key, Model model)
 	{
-		/*Food food = foodRepository.findById(id).orElseThrow(IllegalStateException::new);
-		foodRepository.delete(food);*/
+		Food food = foodRepository.findById(id).orElseThrow(IllegalStateException::new);
+
+		mapFoodImageRepository.findAllByKey_Food(food);
+
+
+
+
+
+		/*foodRepository.delete(food);*/
 		/*foodRepository.deleteAll();
 		imageRepository.deleteAll();*/
 		/*MapFoodImage mapFoodImage = mapFoodImageRepository.findById(key).orElseThrow(IllegalStateException::new);
@@ -182,7 +189,11 @@ public class FoodController
 		return "uploadForm";
 	}
 
+	@GetMapping("/ordersTable")
+	public String ordersTable(Model model){
 
+		return "tableOrders";
+	}
 
 
 }

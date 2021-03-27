@@ -10,5 +10,6 @@ public interface MapFoodImageRepository extends CrudRepository<MapFoodImage, Map
 {
 
 	MapFoodImage findFirstByKey_FoodAndMainTrue(Food food);
+	MapFoodImage findAllByKey_Food(Food food);
 }
 

@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Еда</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+/*
+        .container {
+            max-width: 300px;
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-top: 15%;
+        }
+
+*/
+
+    </style>
+</head>
+<body>
+<header th:insert="blocks/headerAdmin :: headerAdmin"></header>
+<main role="main">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1>Заказы</h1>
+
+            <p>
+                <!--              <a href="#" class="btn btn-primary my-2">Main call to action</a>
+                             <a href="#" class="btn btn-secondary my-2">Secondary action</a>-->
+            </p>
+        </div>
+    </section>
+</main>
+    <div class="album py-5 bg-light">
+        <div class="container">
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>     <!-- колонки-->
+                        <th scope="col">Имя</th>
+                        <th scope="col">Фамилия</th>
+                        <th scope="col">Телефон</th>
+                        <th scope="col">Адресс</th>
+                        <th scope="col">Дом</th>
+                        <th scope="col">Подъезд</th>
+                        <th scope="col">Этаж</th>
+                        <th scope="col">Квартира</th>
+                        <th scope="col">О заказе</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>                                    <!--строки-->
+                        <th scope="row">1</th>
+
+                        <td>Иван</td>
+                        <td>Иванов</td>
+                        <td>8 800 555 35 35</td>
+                        <td>Пушкина </td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>34</td>
+                        <td><a class="p-2 text-dark" href="/order">Подробнее</a></td>
+
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Иржанчи</td>
+                        <td>Братишка</td>
+                        <td> 8 800 555 35 35</td>
+                        <td>Пушкина </td>
+                        <td>14</td>
+                        <td>542</td>
+                        <td>35</td>
+                        <td>34</td>
+                        <td><a class="p-2 text-dark" href="/order">Подробнее</a></td>
+
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Эля</td>
+                        <td>Дубина</td>
+                        <td>8 800 555 35 35</td>
+                        <td>ывпфпвып</td>
+                        <td>1213</td>
+                        <td>2221</td>
+                        <td>32</td>
+                        <td>343</td>
+                        <td><a class="p-2 text-dark" href="/order">Подробнее</a></td>
+                    </tr>
+
+                    </tbody>
+
+                </table>
+            <hr style="margin-top: -9px;">
+        </div>
+    </div>
+
+
+
+
+
+<div th:insert="blocks/footer :: footer"></div>
+</body>
+</html>
+
