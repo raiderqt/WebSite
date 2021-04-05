@@ -10,6 +10,7 @@ import com.WebSite.repo.ImageRepository;
 import com.WebSite.repo.MapFoodImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -83,6 +84,8 @@ public class FoodController
 	@GetMapping("/food/add")
 	public String foodAdd(Model model)
 	{
+
+
 		return "foodAdd";
 	}
 
@@ -149,36 +152,49 @@ public class FoodController
 	}
 
 	@PostMapping("/food/{id}/edit")
-	public String foodPostUpdate(@PathVariable(value = "id") int id, @RequestParam String name,@RequestParam String description,@RequestParam BigDecimal price, Model model)
+	public String foodPostUpdate(@PathVariable(value = "id") int id,
+								 @RequestParam String name,
+								 @RequestParam String description,
+								 @RequestParam BigDecimal price,
+								 Model model)
 	{
 		Food food = foodRepository.findById(id).orElseThrow(IllegalStateException::new);
-		Image image = imageRepository.findById(id).orElseThrow(IllegalStateException::new);
+
+
 		food.setName(name);
 		food.setDescription(description);
 		food.setPrice(price);
-
+		/*image.setImageDB(imageDB);*/
 
 		foodRepository.save(food);
-		imageRepository.save(image);
+
 		return "redirect:/admin";
 	}
-
+	@Transactional
 	@PostMapping("/food/{id}/remove")
 	public String foodPostDelete(@PathVariable(value = "id") int id, MapFoodImage.Key key, Model model)
 	{
 		Food food = foodRepository.findById(id).orElseThrow(IllegalStateException::new);
 
+
 		mapFoodImageRepository.findAllByKey_Food(food);
 
 
+		/*List<MapFoodImage> mapFoodImage =	mapFoodImageRepository.findAllByKey_Food(food);
+
+		for (int i = 0; i < mapFoodImage.size() ; i++) {
+			mapFoodImageRepository.delete(mapFoodImageRepository.findAllByKey_Food(food).get(i));
+			foodRepository.deleteById(food.getId());
+
+		}*/
+		/*foodRepository.deleteById(id);*/
 
 
 
-		/*foodRepository.delete(food);*/
-		/*foodRepository.deleteAll();
-		imageRepository.deleteAll();*/
-		/*MapFoodImage mapFoodImage = mapFoodImageRepository.findById(key).orElseThrow(IllegalStateException::new);
-		mapFoodImageRepository.delete(mapFoodImage);*/
+
+
+
+
 		return "redirect:/admin";
 	}
 
@@ -194,6 +210,13 @@ public class FoodController
 
 		return "tableOrders";
 	}
+
+	@GetMapping("/ordersDetails")
+	public String ordersDetails(Model model){
+
+		return "ordersDetails";
+	}
+
 
 
 }

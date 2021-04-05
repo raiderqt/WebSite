@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Еда</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        /*
+                .container {
+                    max-width: 300px;
+                    position: relative;
+                    margin-left: auto;
+                    margin-right: auto;
+                    padding-right: 15px;
+                    padding-left: 15px;
+                    margin-top: 15%;
+                }
+
+        */
+
+    </style>
+</head>
+<body>
+<header th:insert="blocks/headerAdmin :: headerAdmin"></header>
+<main role="main">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1>Детали Заказа</h1>
+
+            <p>
+                            <a href="/order" class="btn btn-primary my-2">Назад к заказам</a>
+                            <!--<a href="#" class="btn btn-secondary my-2">Secondary action</a>-->
+            </p>
+        </div>
+    </section>
+</main>
+
+    <div class="album py-5 bg-light">
+
+        <div class="container">
+            <div class="row">
+
+                    <!--Левая-->
+                <div class="col">
+                    <h1 class="text-center">Левая</h1>
+                </div>
+                    <!--правая-->
+                <div class="col">
+                    <h1 class="text-center">Правая</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<div th:insert="blocks/footer :: footer"></div>
+</body>
+</html>
+

@@ -19,11 +19,11 @@ public class MapFoodImage
 	@Embeddable
 	public static class Key implements Serializable
 	{
-		@OneToOne(cascade = CascadeType.ALL)
+		@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 		@JoinColumn(name = "image_id", nullable = false, foreignKey = @ForeignKey(name = "FK_IMAGE_ID"))
 		private Image image;
 
-		@OneToOne(cascade = CascadeType.ALL)
+		@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 		@JoinColumn(name = "food_id", nullable = false, foreignKey = @ForeignKey(name = "FK_FOOD_ID"))
 		private Food food;
 
