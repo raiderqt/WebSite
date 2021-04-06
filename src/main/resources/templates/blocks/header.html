@@ -9,11 +9,18 @@
         </nav>
     </div>
     <script>
-        function addBasket(data) {
 
-            // alert("Success, server responded with: " + data.target.response); // raw response
-            //let tbody = document.getElementById(id).getElementsByTagName("basket_table")[0];
+        function addBasket(data) {
             let tbody = document.getElementById("basket_table").getElementsByTagName("TBODY")[0];
+            for (let i = 0; i < tbody.rows.length; i++) {
+                if (tbody.rows[i].cells[0].innerText === data.response.getElementById("product_id").value) {
+                    let tempCount = parseInt(tbody.rows[i].cells[2].innerText) + 1;
+                    tbody.rows[i].cells[2].innerText = tempCount.toString();
+                    let tempPrice = parseInt(tbody.rows[i].cells[3].innerText) + parseInt(data.response.getElementById("price").value);
+                    tbody.rows[i].cells[3].innerText = tempPrice.toString();
+                    return;
+                }
+            }
             let row = document.createElement("TR");
             let td1 = document.createElement("TD");
             td1.appendChild(document.createTextNode(data.response.getElementById("product_id").value));
@@ -21,12 +28,26 @@
             row.appendChild(td1);
             let td2 = document.createElement("TD");
             td2.appendChild(document.createTextNode(data.response.getElementById("name").value));
-            //td2.appendChild(добавить класс);
             row.appendChild(td2);
             let td3 = document.createElement("TD");
             td3.appendChild(document.createTextNode("1"));
             row.appendChild(td3);
+            let tdPrice = document.createElement("TD");
+            tdPrice.appendChild(document.createTextNode(data.response.getElementById("price").value));
+            row.appendChild(tdPrice);
             tbody.appendChild(row);
+        }
+        function calcSum()
+        {
+            let tbody = document.getElementById("basket_table").getElementsByTagName("TBODY")[0];
+            let sum = 0;
+            for (let i = 0; i < tbody.rows.length; i++){
+                sum += parseInt(tbody.rows[i].cells[3].innerText);
+            }
+            if(sum > 0)
+            {
+                document.getElementById("order_btn").textContent = "Сумма заказа " + sum.toString() + "₽";
+            }
         }
     </script>
     <input type="checkbox" id="side-checkbox"/>
@@ -34,18 +55,17 @@
         <label class="side-button-2" for="side-checkbox">+</label>
         <!--<div>Корзина</div>-->
         <h4 align="center">Корзина</h4>
-<!--        <hr>-->
-       <!-- <p>Информация в панеле</p>-->
+        <!--        <hr>-->
+        <!-- <p>Информация в панеле</p>-->
         <br>
         <table id="basket_table" class="table" border="0" style="margin-bottom: 0px; ">
             <tbody>
-
             </tbody>
         </table>
         <hr style="margin-bottom: 7px; margin-top: 0px;">
 
         <a id="order_href" href="/order">
-        <button type="button"  id="order_btn" class= "btn btn-primary btn-lg btn-block btn-success " >Заказать 400₽</button>
+            <button type="button" id="order_btn" class="btn btn-primary btn-lg btn-block btn-success ">Нечего заказывать</button>
         </a>
     </div>
 </div>

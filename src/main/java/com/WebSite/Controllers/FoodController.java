@@ -76,6 +76,7 @@ public class FoodController
 		{
 			model.addAttribute("product_id", item.get().getId());
 			model.addAttribute("product_name", item.get().getName());
+			model.addAttribute("product_price", item.get().getPrice());
 		}
 
 		return "basket";

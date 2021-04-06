@@ -82,8 +82,8 @@
             xhr.open("POST", "/basket");
             xhr.responseType = 'document';
             xhr.onload = function (event) {
-                //alert("Success, server responded with: " + event.target.response); // raw response
                 addBasket(event.target);
+                calcSum();
             };
             let formData = new FormData(id);
             xhr.send(formData);
